@@ -28,8 +28,17 @@ app.use("/api/wallet", require("./routes/wallet"));
 app.use("/api/dealer", require("./routes/dealer"));
 app.use("/api/admin",  require("./routes/admin"));
 
+
+app.get("/", (req, res) => {
+  res.send("Backend API is running 🚀");
+});
+
+
+
+
 // ── Health ────────────────────────────────────────────────────────────────────
 app.get("/health", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
+app.get("/", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
 
 // ── 404 ───────────────────────────────────────────────────────────────────────
 app.use((req, res) => res.status(404).json({ success: false, message: "Route not found" }));
