@@ -6,16 +6,28 @@ require("dotenv").config();
 const app = express();
 
 // ── CORS ──────────────────────────────────────────────────────────────────────
+// app.use(cors({
+//   origin: [
+//     process.env.FRONTEND_URL || "http://localhost:5173",
+//     "http://localhost:5173",
+//     "http://localhost:3000",
+//     "http://127.0.0.1:5173",
+//   ],
+//   credentials: true,
+// }));
+
 app.use(cors({
   origin: [
-    process.env.FRONTEND_URL || "http://localhost:5173",
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:5173",
+    "https://emergency-safety-qrr.netlify.app",
+    "http://localhost:5173"
   ],
-  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
+app.options("*", cors())
 
+///////
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
